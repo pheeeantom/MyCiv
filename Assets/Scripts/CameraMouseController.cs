@@ -24,58 +24,20 @@ public class CameraMouseController : MonoBehaviour
     void Update()
     {
         if (Input.GetKey(KeyCode.A) && transform.position.x > 0)
-            transform.position = transform.position + new Vector3(-0.01f, 0, 0);
+            transform.position += new Vector3(-0.01f, 0, 0);
         if (Input.GetKey(KeyCode.D) && transform.position.x < maxX)
-            transform.position = transform.position + new Vector3(0.01f, 0, 0);
+            transform.position += new Vector3(0.01f, 0, 0);
         if (Input.GetKey(KeyCode.W) && transform.position.y < maxY)
-            transform.position = transform.position + new Vector3(0, 0.01f, 0);
+            transform.position += new Vector3(0, 0.01f, 0);
         if (Input.GetKey(KeyCode.S) && transform.position.y > 0)
-            transform.position = transform.position + new Vector3(0, -0.01f, 0);
+            transform.position += new Vector3(0, -0.01f, 0);
         if (Input.GetButtonDown("Fire1"))
         {
-            Vector3 mousePos = Input.mousePosition;
-            float screenToCameraDistance = Camera.nearClipPlane;
-            Vector3 mousePosNearClipPlane = new Vector3(mousePos.x, mousePos.y, screenToCameraDistance);
-            Vector3 worldPointPos = Camera.ScreenToWorldPoint(mousePosNearClipPlane);
-            Debug.Log(worldPointPos);
-            Vector3Int gridPos = Grid.LocalToCell(worldPointPos);
-            Debug.Log(gridPos);
-            /*foreach (Unit unit in Unit.units)
-            {
-                Grid.GetCellCenterWorld((Vector3Int)unit.pos);
-                Debug.Log()
-            }*/
+            Vector3 mousePos = new Vector3(Input.mousePosition.x, Input.mousePosition.y, -Camera.transform.position.z);
+            Vector3 worldPos = Camera.ScreenToWorldPoint(mousePos);
+            Vector3 gridPos = Grid.WorldToCell(worldPos);
+            Debug.Log("Grid: " + gridPos);
 
         }
-        /*if (Input.GetButtonDown("Fire1"))
-        {
-            Vector3 mousePos = Input.mousePosition;
-            foreach (Unit unit in Unit.units)
-            {
-                Vector3Int position = Vector3Int.FloorToInt(HandleUtility.GUIPointToWorldRay(Event.current.mousePosition).origin);
-                Vector3Int cellPos = Grid.WorldToCell(position);
-
-                Debug.Log(unit.pos + ", " + cellPos);
-                if (Vector3.Distance(mousePos, new Vector3(unit.pos.x, unit.pos.y, 0)) < 1)
-                {
-                    Debug.Log(100);
-                    Hex hex = Generator._world.GetHex(unit.pos);
-                    int cost = unit.movement;
-                    List<Hex> movementField = (List<Hex>)Lib.GetUniques<Hex>(unit.GetMovementField(cost, hex));
-                    Generator._world.HighlightHexes(movementField);
-                }
-            }
-        }*/
-            /*Event e = Event.current;
-            if (e != null)
-            {
-                if (Event.current.type == EventType.MouseDown)
-                {
-                    Vector3Int position = Vector3Int.FloorToInt(HandleUtility.GUIPointToWorldRay(Event.current.mousePosition).origin);
-                    Vector3Int cellPos = Grid.WorldToCell(position);
-
-                    Debug.Log(cellPos);
-                }
-            }*/
     }
 }

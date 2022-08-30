@@ -1,7 +1,4 @@
-﻿using Assets.Scripts.Map;
-using System.Collections.Generic;
-using UnityEngine.Tilemaps;
-using UnityEngine;
+﻿using UnityEngine.Tilemaps;
 using Assets.Scripts.Units;
 
 namespace Assets.Scripts.Map
@@ -27,22 +24,17 @@ namespace Assets.Scripts.Map
 
         public static int GetMovementPoints(HexType hexType, Unit unit)
         {
-            if (unit is MarineUnit)
+            if (unit is NavalUnit)
             {
                 if (hexType == Ocean || hexType == CoastLake)
                     return 1;
-                else
-                    return 1000;
+                return 1000;
             }
-            else
-            {
-                if (hexType == Desert || hexType == Snow)
-                    return 2;
-                else if (hexType == Mountains)
-                    return 3;
-                else
-                    return 1;
-            }
+            if (hexType == Desert || hexType == Snow)
+                return 2;
+            if (hexType == Mountains)
+                return 3;
+            return 1;
         }
 
         public static HexType GetHexType(HeightType height, MoistureType moisture, HeatType heat)
@@ -59,57 +51,48 @@ namespace Assets.Scripts.Map
                     {
                         return Tundra;
                     }
-                    else if (moisture == MoistureType.Dry)
+
+                    if (moisture == MoistureType.Dry)
                     {
                         return Plains;
                     }
-                    else
-                    {
-                        return Snow;
-                    }
+                    return Snow;
                 }
-                else if (heat == HeatType.Warm)
+
+                if (heat == HeatType.Warm)
                 {
                     if (moisture == MoistureType.Dryest || moisture == MoistureType.Dryer || moisture == MoistureType.Dry || moisture == MoistureType.Wet)
                     {
                         return Plains;
                     }
-                    else
-                    {
-                        return Grassland;
-                    }
+
+                    return Grassland;
                 }
-                else if (heat == HeatType.Warmer)
+                if (heat == HeatType.Warmer)
                 {
                     if (moisture == MoistureType.Dry || moisture == MoistureType.Dryer)
                     {
                         return Plains;
                     }
-                    else if (moisture == MoistureType.Wet || moisture == MoistureType.Wetter || moisture == MoistureType.Wettest)
+
+                    if (moisture == MoistureType.Wet || moisture == MoistureType.Wetter || moisture == MoistureType.Wettest)
                     {
                         return Grassland;
                     }
-                    else
-                    {
-                        return Desert;
-                    }
-                }
-                else {
                     return Desert;
                 }
+                return Desert;
             }
-            else if (height == HeightType.Snow || height == HeightType.Rock)
+
+            if (height == HeightType.Snow || height == HeightType.Rock)
             {
                 return Mountains;
             }
-            else if (height == HeightType.ShallowWater)
+            if (height == HeightType.ShallowWater)
             {
                 return CoastLake;
             }
-            else
-            {
-                return Ocean;
-            }
+            return Ocean;
         }
 
         public HexType(string name, Tile tile)
