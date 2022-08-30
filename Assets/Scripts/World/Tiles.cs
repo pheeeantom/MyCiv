@@ -2,7 +2,7 @@
 using UnityEngine;
 using UnityEngine.Tilemaps;
 
-namespace Assets.Scripts.World
+namespace Assets.Scripts.Map
 {
     class Tiles : MonoBehaviour
     {
@@ -15,6 +15,5 @@ namespace Assets.Scripts.World
         public static Tile Snow = (Tile)AssetDatabase.LoadAssetAtPath("Assets/Tiles/snow.asset", typeof(Tile));
         public static Tile Tundra = (Tile)AssetDatabase.LoadAssetAtPath("Assets/Tiles/tundra.asset", typeof(Tile));
         public static Tile Fog = (Tile)AssetDatabase.LoadAssetAtPath("Assets/Tiles/fog.asset", typeof(Tile));
-
     }
 }

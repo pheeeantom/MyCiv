@@ -1,7 +1,7 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <Project ToolsVersion="4.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
   <PropertyGroup>
-    <LangVersion>latest</LangVersion>
+    <LangVersion>8.0</LangVersion>
   </PropertyGroup>
   <PropertyGroup>
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
@@ -53,13 +53,71 @@
     <UnityVersion>2020.3.17f1</UnityVersion>
   </PropertyGroup>
   <ItemGroup>
-    <Compile Include="Assets\Scripts\CameraController.cs" />
+    <Analyzer Include="C:\Program Files (x86)\Microsoft Visual Studio Tools for Unity\16.0\Analyzers\Microsoft.Unity.Analyzers.dll" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="Assets\Scripts\World\Generation\AccidentalNoise\Implicit\ImplicitScaleOffset.cs" />
+    <Compile Include="Assets\Scripts\World\Generation\AccidentalNoise\Implicit\ImplicitAutoCorrect.cs" />
+    <Compile Include="Assets\Scripts\World\Generation\MapData.cs" />
+    <Compile Include="Assets\Scripts\World\Generation\Generator.cs" />
     <Compile Include="Assets\Scripts\World\World.cs" />
-    <Compile Include="Assets\Scripts\World\HexType.cs" />
-    <Compile Include="Assets\Scripts\World\Hex.cs" />
-    <Compile Include="Assets\Scripts\World\Direction.cs" />
-    <Compile Include="Assets\Scripts\World\ProceduralGenerator.cs" />
+    <Compile Include="Assets\Scripts\World\Generation\AccidentalNoise\Implicit\ImplicitSphere.cs" />
+    <Compile Include="Assets\Scripts\World\Generation\AccidentalNoise\Implicit\ImplicitInvert.cs" />
+    <Compile Include="Assets\Scripts\World\Generation\AccidentalNoise\CellularGenerator.cs" />
+    <Compile Include="Assets\Scripts\Units\LandUnit.cs" />
+    <Compile Include="Assets\Scripts\World\Generation\AccidentalNoise\Implicit\ImplicitRotateDomain.cs" />
+    <Compile Include="Assets\Scripts\World\Generation\AccidentalNoise\CellularCache.cs" />
+    <Compile Include="Assets\Scripts\World\Generation\AccidentalNoise\Implicit\ImplicitBlend.cs" />
+    <Compile Include="Assets\Scripts\Units\Pop.cs" />
+    <Compile Include="Assets\Scripts\World\Generation\AccidentalNoise\Enums\BasisType.cs" />
+    <Compile Include="Assets\Scripts\World\Generation\AccidentalNoise\Implicit\ImplicitBrightContrast.cs" />
+    <Compile Include="Assets\Scripts\World\Generation\AccidentalNoise\Implicit\ImplicitTan.cs" />
+    <Compile Include="Assets\Scripts\World\Generation\AccidentalNoise\MappingRanges.cs" />
+    <Compile Include="Assets\Scripts\World\Generation\AccidentalNoise\NoiseLookupTable.cs" />
+    <Compile Include="Assets\Scripts\World\Generation\WrappingWorldGenerator.cs" />
+    <Compile Include="Assets\Scripts\CameraMouseController.cs" />
+    <Compile Include="Assets\Scripts\World\Generation\TextureGenerator.cs" />
     <Compile Include="Assets\Scripts\World\Tiles.cs" />
+    <Compile Include="Assets\Scripts\World\Generation\CellGroup.cs" />
+    <Compile Include="Assets\Scripts\World\Generation\AccidentalNoise\Enums\CombinerType.cs" />
+    <Compile Include="Assets\Scripts\World\Generation\AccidentalNoise\Cache.cs" />
+    <Compile Include="Assets\Scripts\World\Generation\Cell.cs" />
+    <Compile Include="Assets\Scripts\Lib.cs" />
+    <Compile Include="Assets\Scripts\World\Generation\AccidentalNoise\Implicit\ImplicitScaleDomain.cs" />
+    <Compile Include="Assets\Scripts\World\Generation\AccidentalNoise\Implicit\ImplicitCos.cs" />
+    <Compile Include="Assets\Scripts\World\Generation\AccidentalNoise\Implicit\ImplicitCellular.cs" />
+    <Compile Include="Assets\Scripts\World\ClimateChange.cs" />
+    <Compile Include="Assets\Scripts\World\Generation\AccidentalNoise\Implicit\ImplicitGain.cs" />
+    <Compile Include="Assets\Scripts\World\Generation\AccidentalNoise\Implicit\ImplicitBias.cs" />
+    <Compile Include="Assets\Scripts\World\Generation\AccidentalNoise\Implicit\ImplicitModuleBase.cs" />
+    <Compile Include="Assets\Scripts\World\Generation\AccidentalNoise\Mapping.cs" />
+    <Compile Include="Assets\Scripts\World\Generation\AccidentalNoise\Enums\FractalType.cs" />
+    <Compile Include="Assets\Scripts\World\Generation\AccidentalNoise\Implicit\ImplicitLog.cs" />
+    <Compile Include="Assets\Scripts\World\HexType.cs" />
+    <Compile Include="Assets\Scripts\World\Generation\AccidentalNoise\Implicit\ImplicitCache.cs" />
+    <Compile Include="Assets\Scripts\World\Generation\AccidentalNoise\Implicit\ImplicitFractal.cs" />
+    <Compile Include="Assets\Scripts\World\Generation\AccidentalNoise\Implicit\ImplicitCeiling.cs" />
+    <Compile Include="Assets\Scripts\World\Generation\River.cs" />
+    <Compile Include="Assets\Scripts\World\Generation\AccidentalNoise\Enums\InterpolationType.cs" />
+    <Compile Include="Assets\Scripts\World\Generation\AccidentalNoise\Implicit\ImplicitClamp.cs" />
+    <Compile Include="Assets\Scripts\World\HexDirection.cs" />
+    <Compile Include="Assets\Scripts\World\Generation\MathHelper.cs" />
+    <Compile Include="Assets\Scripts\World\Generation\AccidentalNoise\Implicit\ImplicitBasisFunction.cs" />
+    <Compile Include="Assets\Scripts\World\Generation\AccidentalNoise\Noise.cs" />
+    <Compile Include="Assets\Scripts\World\Generation\AccidentalNoise\Implicit\ImplicitSin.cs" />
+    <Compile Include="Assets\Scripts\World\Generation\AccidentalNoise\Implicit\ImplicitCombiner.cs" />
+    <Compile Include="Assets\Scripts\World\Generation\AccidentalNoise\Implicit\ImplicitFloor.cs" />
+    <Compile Include="Assets\Scripts\World\Generation\AccidentalNoise\Implicit\ImplicitTiers.cs" />
+    <Compile Include="Assets\Scripts\Units\Unit.cs" />
+    <Compile Include="Assets\Scripts\World\Generation\AccidentalNoise\Implicit\ImplicitTranslatedDomain.cs" />
+    <Compile Include="Assets\Scripts\World\Generation\AccidentalNoise\Implicit\ImplicitPow.cs" />
+    <Compile Include="Assets\Scripts\World\Generation\AccidentalNoise\Implicit\ImplicitConstant.cs" />
+    <Compile Include="Assets\Scripts\World\Generation\AccidentalNoise\Implicit\ImplicitGradient.cs" />
+    <Compile Include="Assets\Scripts\World\Hex.cs" />
+    <Compile Include="Assets\Scripts\World\Generation\AccidentalNoise\Enums\MappingMode.cs" />
+    <Compile Include="Assets\Scripts\World\Generation\AccidentalNoise\Implicit\ImplicitSelect.cs" />
+    <Compile Include="Assets\Scripts\Units\MarineUnit.cs" />
+    <Compile Include="Assets\Scripts\World\HexWorldGenerator.cs" />
   </ItemGroup>
   <ItemGroup>
     <Reference Include="UnityEngine">

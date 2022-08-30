@@ -2,30 +2,37 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-namespace Assets.Scripts
+namespace Assets.Scripts.Map
 {
-    class Hex
+    class Hex : Cell
     {
-        Dictionary<Direction, Hex> _neighbours = new Dictionary<Direction, Hex>();
+        Dictionary<HexDirection, Hex> _neighbours = new Dictionary<HexDirection, Hex>();
 
         public HexType HexType { get; set; }
         Vector2Int _position;
         public Vector2Int Position { get => _position; }
 
-        public Hex(HexType hexType, Vector2Int pos)
+        public Hex(Vector2Int pos)
         {
-            this.HexType = hexType;
             this._position = pos;
         }
 
-        public void Connect(Hex hex, Direction direction)
+        void Connect(Hex hex, HexDirection direction)
         {
+            //if (_neighbours.ContainsKey(direction))
+            //    _neighbours.Remove(direction);
             _neighbours.Add(direction, hex);
         }
 
-        public Hex GetNeighbour(Direction direction)
+        public static void Connect(Hex hex, Hex hex1, HexDirection dir)
         {
-            return _neighbours[direction];
+            hex.Connect(hex1, dir);
+            hex1.Connect(hex, dir.Opposite());
+        }
+
+        public Hex GetNeighbour(HexDirection dir)
+        {
+            return _neighbours[dir];
         }
     }
 }
