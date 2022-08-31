@@ -137,14 +137,13 @@ public class Cell
 
 		if (left < right && left < top && left < bottom)
 			return Direction.Left;
-		else if (right < left && right < top && right < bottom)
+		if (right < left && right < top && right < bottom)
 			return Direction.Right;
-		else if (top < left && top < right && top < bottom)
+		if (top < left && top < right && top < bottom)
 			return Direction.Top;
-		else if (bottom < top && bottom < right && bottom < left)
+		if (bottom < top && bottom < right && bottom < left)
 			return Direction.Bottom;
-		else 
-			return Direction.Bottom;
+		return Direction.Bottom;
 	}
 	
 	public void SetRiverPath(River river)

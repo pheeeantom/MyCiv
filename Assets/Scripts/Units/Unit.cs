@@ -1,8 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿using System.Collections.Generic;
 using UnityEngine;
 using Assets.Scripts.Map;
 
@@ -10,31 +6,43 @@ namespace Assets.Scripts.Units
 {
     abstract class Unit : MonoBehaviour
     {
-        public static List<Unit> units = new List<Unit>();
-        public World world;
-        public int movement;
-        public Vector2Int pos;
-
-        abstract public void SpawnUnit();
-
-        public List<Hex> GetMovementField(int cost, Hex hex)
+        World _world;
+        int _movement;
+        Hex _hex;
+        
+        public World World => _world;
+        public int Movement => _movement;
+        public Hex Hex => _hex;
+        
+        protected Unit(int movement, Hex hex, World world)
         {
-            List<Hex> res = new List<Hex>();
-            foreach (HexDirection dir in HexDirection.directions)
+            this._movement = movement;
+            this._hex = hex;
+            this._world = world;
+        }
+
+        public List<Hex> GetReachableHexes()
+        {
+            return GetReachableHexes(Movement, Hex, new List<Hex>());
+        }
+
+        List<Hex> GetReachableHexes(int movement, Hex hex, List<Hex> hexes)
+        {
+            foreach (Hex hex0 in hex.Neighbours)
             {
-                hex = hex.GetNeighbour(dir);
-                int costNew = cost;
-                costNew -= HexType.GetMovementPoints(hex.HexType, this);
-                if (cost >= 0)
-                {
-                    res.Add(hex);
-                }
-                if (cost > 0)
-                {
-                    res.AddRange(this.GetMovementField(costNew, hex));
-                }
+                int movement0 = movement;
+                movement0 -= GetMovementPoints(hex0.HexType);
+                if (movement >= 0)
+                    hexes.Add(hex0);
+                if (movement > 0)
+                    hexes.AddRange(GetReachableHexes(movement0, hex0, hexes));
             }
-            return res;
+            return hexes;
+        }
+
+        protected virtual int GetMovementPoints(HexType hexType)
+        {
+            return hexType.MovementPoints;
         }
     }
 }

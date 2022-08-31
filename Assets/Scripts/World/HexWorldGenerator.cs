@@ -97,19 +97,19 @@ namespace Assets.Scripts.Map
 
 		protected override Cell GetTop(Cell t)
 		{
-			return (Hex)this._world.hexes[t.X, MathHelper.Mod(t.Y - 1, Height)];
+			return this._world.hexes[t.X, MathHelper.Mod(t.Y - 1, Height)];
 		}
 		protected override Cell GetBottom(Cell t)
 		{
-			return (Hex)this._world.hexes[t.X, MathHelper.Mod(t.Y + 1, Height)];
+			return this._world.hexes[t.X, MathHelper.Mod(t.Y + 1, Height)];
 		}
 		protected override Cell GetLeft(Cell t)
 		{
-			return (Hex)this._world.hexes[MathHelper.Mod(t.X - 1, Width), t.Y];
+			return this._world.hexes[MathHelper.Mod(t.X - 1, Width), t.Y];
 		}
 		protected override Cell GetRight(Cell t)
 		{
-			return (Hex)this._world.hexes[MathHelper.Mod(t.X + 1, Width), t.Y];
+			return this._world.hexes[MathHelper.Mod(t.X + 1, Width), t.Y];
 		}
 
 		protected override void UpdateBiomeBitmask()
@@ -164,16 +164,13 @@ namespace Assets.Scripts.Map
 			//DigRiverGroups();
 			//AdjustMoistureMap();
 
-
-
-
 			UpdateBitmasks();
 			FloodFill();
 
 			GenerateBiomeMap();
 			UpdateBiomeBitmask();
-
-			new Pop(2, new Vector2Int(0, 5), this._world).SpawnUnit();
+			
+			new Pop(2, new Hex(new Vector2Int(0, 5)), this._world);
 		}
 
 		protected override void FloodFill()
@@ -274,8 +271,6 @@ namespace Assets.Scripts.Map
 				for (var y = 0; y < Height; y++)
 				{
 					Hex t = new Hex(new Vector2Int(x, y));
-					t.X = x;
-					t.Y = y;
 
 					//set heightmap value
 					float heightValue = HeightData.Data[x, y];

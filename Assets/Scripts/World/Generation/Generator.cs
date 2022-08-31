@@ -243,7 +243,7 @@ public abstract class Generator : MonoBehaviour {
 				Cell t = Cells[x,y];
 				if (t.HeightType == HeightType.River)
 				{
-					AddMoisture (t, (int)60);
+					AddMoisture (t, 60);
 				}
 			}
 		}
@@ -342,8 +342,7 @@ public abstract class Generator : MonoBehaviour {
 	{
 		if (cell == null)
 			return int.MaxValue;
-		else
-			return cell.HeightValue;
+		return cell.HeightValue;
 	}
 
 	protected void GenerateRivers()

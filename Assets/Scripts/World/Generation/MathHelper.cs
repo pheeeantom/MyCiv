@@ -31,10 +31,8 @@ public static class MathHelper
         {
             return Bias(1.0 - g, 2.0 * t) / 2.0;
         }
-        else
-        {
-            return 1.0 - Bias(1.0 - g, 2.0 - 2.0 * t) / 2.0;
-        }
+
+        return 1.0 - Bias(1.0 - g, 2.0 - 2.0 * t) / 2.0;
     }
 
     public static int Mod(int x, int m)

@@ -44,7 +44,7 @@ namespace Assets.Scripts.Map
             //    _hexPositionsDict.Remove(pos);
             _hexPositionsDict.Add(pos, hex);
 
-            foreach (HexDirection dir in HexDirection.directions)
+            foreach (HexDirection dir in HexDirection.Directions)
             {
                 Vector2Int neighborPos = pos + dir.vector;
                 if (_hexPositionsDict.ContainsKey(neighborPos))

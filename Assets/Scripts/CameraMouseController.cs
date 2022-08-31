@@ -37,7 +37,7 @@ public class CameraMouseController : MonoBehaviour
             Vector3 worldPos = Camera.ScreenToWorldPoint(mousePos);
             Vector3 gridPos = Grid.WorldToCell(worldPos);
             Debug.Log("Grid: " + gridPos);
-
+            
         }
     }
 }

@@ -962,15 +962,15 @@ namespace AccidentalNoise
                 j1 = 1;
             }
 
-            Double x1 = x0 - (Double) i1 + G2;
-            Double y1 = y0 - (Double) j1 + G2;
+            Double x1 = x0 - i1 + G2;
+            Double y1 = y0 - j1 + G2;
             Double x2 = x0 - 1.0 + 2.0*G2;
             Double y2 = y0 - 1.0 + 2.0*G2;
 
             // Hash the triangle coordinates to index the gradient table
-            uint h0 = HashCoordinates(i, j, (int) seed);
-            uint h1 = HashCoordinates(i + i1, j + j1, (int) seed);
-            uint h2 = HashCoordinates(i + 1, j + 1, (int) seed);
+            uint h0 = HashCoordinates(i, j, seed);
+            uint h1 = HashCoordinates(i + i1, j + j1, seed);
+            uint h2 = HashCoordinates(i + 1, j + 1, seed);
 
             // Now, index the tables
             Double[] g0 = {NoiseLookupTable.Gradient2D[h0, 0], NoiseLookupTable.Gradient2D[h0, 1]};
@@ -1101,10 +1101,10 @@ namespace AccidentalNoise
             var y3 = y0 - 1.0 + 3.0 * G3;
             var z3 = z0 - 1.0 + 3.0 * G3;
 
-            var h0 = HashCoordinates(i, j, k, (int) seed);
-            var h1 = HashCoordinates(i + i1, j + j1, k + k1, (int) seed);
-            var h2 = HashCoordinates(i + i2, j + j2, k + k2, (int) seed);
-            var h3 = HashCoordinates(i + 1, j + 1, k + 1, (int) seed);
+            var h0 = HashCoordinates(i, j, k, seed);
+            var h1 = HashCoordinates(i + i1, j + j1, k + k1, seed);
+            var h2 = HashCoordinates(i + i2, j + j2, k + k2, seed);
+            var h3 = HashCoordinates(i + 1, j + 1, k + 1, seed);
 
             Double[] g0 = {
                               NoiseLookupTable.Gradient3D[h0, 0], NoiseLookupTable.Gradient3D[h0, 1],
@@ -1234,11 +1234,11 @@ namespace AccidentalNoise
             Double z4 = z0 - 1.0 + 4.0*G4;
             Double w4 = w0 - 1.0 + 4.0*G4;
             // Work out the hashed gradient indices of the five simplex corners
-            uint h0 = HashCoordinates(i, j, k, l, (int) seed);
-            uint h1 = HashCoordinates(i + i1, j + j1, k + k1, l + l1, (int) seed);
-            uint h2 = HashCoordinates(i + i2, j + j2, k + k2, l + l2, (int) seed);
-            uint h3 = HashCoordinates(i + i3, j + j3, k + k3, l + l3, (int) seed);
-            uint h4 = HashCoordinates(i + 1, j + 1, k + 1, l + 1, (int) seed);
+            uint h0 = HashCoordinates(i, j, k, l, seed);
+            uint h1 = HashCoordinates(i + i1, j + j1, k + k1, l + l1, seed);
+            uint h2 = HashCoordinates(i + i2, j + j2, k + k2, l + l2, seed);
+            uint h3 = HashCoordinates(i + i3, j + j3, k + k3, l + l3, seed);
+            uint h4 = HashCoordinates(i + 1, j + 1, k + 1, l + 1, seed);
 
             Double[] g0 = {
                               NoiseLookupTable.Gradient4D[h0, 0], NoiseLookupTable.Gradient4D[h0, 1],

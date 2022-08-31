@@ -1,5 +1,4 @@
-﻿using Assets.Scripts.Map;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using UnityEngine;
 
 namespace Assets.Scripts.Map
@@ -7,21 +6,20 @@ namespace Assets.Scripts.Map
     class Hex : Cell
     {
         Dictionary<HexDirection, Hex> _neighbours = new Dictionary<HexDirection, Hex>();
-
+        
         public HexType HexType { get; set; }
-        Vector2Int _position;
-        public Vector2Int Position { get => _position; }
+        public Vector2Int Position => new Vector2Int(X, Y);
+        public List<Hex> Neighbours => new List<Hex>(_neighbours.Values);
 
         public Hex(Vector2Int pos)
         {
-            this._position = pos;
+            this.X = pos.x;
+            this.Y = pos.y;
         }
 
-        void Connect(Hex hex, HexDirection direction)
+        void Connect(Hex hex, HexDirection dir)
         {
-            //if (_neighbours.ContainsKey(direction))
-            //    _neighbours.Remove(direction);
-            _neighbours.Add(direction, hex);
+            _neighbours.Add(dir, hex);
         }
 
         public static void Connect(Hex hex, Hex hex1, HexDirection dir)
