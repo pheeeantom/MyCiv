@@ -7,6 +7,7 @@ namespace Assets.Scripts.Map
 {
     class World : MonoBehaviour
     {
+        public Grid grid;
         [SerializeField] public Tilemap tilemap;
         [SerializeField] public Tilemap units;
 
@@ -19,7 +20,7 @@ namespace Assets.Scripts.Map
 
         private void Start()
         {
-            
+            grid = GetComponent<Grid>();
         }
 
         public void createHexesRect()

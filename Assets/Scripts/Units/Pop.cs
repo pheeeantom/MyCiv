@@ -4,9 +4,9 @@ namespace Assets.Scripts.Units
 {
     class Pop : LandUnit
     {
-        public Pop(int movement, Hex hex, World world) : base(movement, hex, world)
+        /*public Pop(int movement, Hex hex, World world) : base(movement, hex, world)
         {
             
-        }
+        }*/
     }
 }

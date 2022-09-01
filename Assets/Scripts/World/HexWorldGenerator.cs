@@ -169,8 +169,10 @@ namespace Assets.Scripts.Map
 
 			GenerateBiomeMap();
 			UpdateBiomeBitmask();
-			
-			new Pop(2, new Hex(new Vector2Int(0, 5)), this._world);
+
+			Hex hex = new Hex(new Vector2Int(0, 5));
+			//Instantiate(new Pop(2, hex, this._world), );
+
 		}
 
 		protected override void FloodFill()

@@ -4,10 +4,10 @@ namespace Assets.Scripts.Units
 {
     abstract class NavalUnit : Unit
     {
-        protected NavalUnit(int movement, Hex hex, World world) : base(movement, hex, world)
+        /*protected NavalUnit(int movement, Hex hex, World world) : base(movement, hex, world)
         {
             
-        }
+        }*/
         
         protected override int GetMovementPoints(HexType hexType)
         {

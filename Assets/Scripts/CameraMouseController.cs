@@ -7,16 +7,16 @@ using UnityEngine;
 
 public class CameraMouseController : MonoBehaviour
 {
-    [SerializeField] HexWorldGenerator Generator;
-    [SerializeField] Grid Grid;
-    [SerializeField] Camera Camera;
-    float maxX;
-    float maxY;
+    [SerializeField] HexWorldGenerator _generator;
+    [SerializeField] Grid _grid;
+    [SerializeField] Camera _camera;
+    float _maxX;
+    float _maxY;
     // Start is called before the first frame update
     void Start()
     {
-        maxX = 0.43f * Generator.Width - 0.215f;
-        maxY = 0.375f * Generator.Height - 0.186f;
+        _maxX = 0.43f * _generator.Width - 0.215f;
+        _maxY = 0.375f * _generator.Height - 0.186f;
         //Debug.Log(maxX);
     }
 
@@ -25,17 +25,17 @@ public class CameraMouseController : MonoBehaviour
     {
         if (Input.GetKey(KeyCode.A) && transform.position.x > 0)
             transform.position += new Vector3(-0.01f, 0, 0);
-        if (Input.GetKey(KeyCode.D) && transform.position.x < maxX)
+        if (Input.GetKey(KeyCode.D) && transform.position.x < _maxX)
             transform.position += new Vector3(0.01f, 0, 0);
-        if (Input.GetKey(KeyCode.W) && transform.position.y < maxY)
+        if (Input.GetKey(KeyCode.W) && transform.position.y < _maxY)
             transform.position += new Vector3(0, 0.01f, 0);
         if (Input.GetKey(KeyCode.S) && transform.position.y > 0)
             transform.position += new Vector3(0, -0.01f, 0);
         if (Input.GetButtonDown("Fire1"))
         {
-            Vector3 mousePos = new Vector3(Input.mousePosition.x, Input.mousePosition.y, -Camera.transform.position.z);
-            Vector3 worldPos = Camera.ScreenToWorldPoint(mousePos);
-            Vector3 gridPos = Grid.WorldToCell(worldPos);
+            Vector3 mousePos = new Vector3(Input.mousePosition.x, Input.mousePosition.y, -_camera.transform.position.z);
+            Vector3 worldPos = _camera.ScreenToWorldPoint(mousePos);
+            Vector3 gridPos = _grid.WorldToCell(worldPos);
             Debug.Log("Grid: " + gridPos);
             
         }

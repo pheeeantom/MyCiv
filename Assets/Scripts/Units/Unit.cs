@@ -7,18 +7,23 @@ namespace Assets.Scripts.Units
     abstract class Unit : MonoBehaviour
     {
         World _world;
-        int _movement;
+        [SerializeField] int _movement;
         Hex _hex;
         
         public World World => _world;
         public int Movement => _movement;
         public Hex Hex => _hex;
-        
-        protected Unit(int movement, Hex hex, World world)
+
+        /*protected Unit(int movement, Hex hex, World world)
         {
             this._movement = movement;
             this._hex = hex;
             this._world = world;
+        }*/
+
+        void Start()
+        {
+            this._world = GetComponentInParent<World>();
         }
 
         public List<Hex> GetReachableHexes()
