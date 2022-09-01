@@ -37,7 +37,14 @@ public class CameraMouseController : MonoBehaviour
             Vector3 worldPos = _camera.ScreenToWorldPoint(mousePos);
             Vector3 gridPos = _grid.WorldToCell(worldPos);
             Debug.Log("Grid: " + gridPos);
-            
+            Unit firstUnit = _generator._world.GetUnits(_generator._world.GetHex(new Vector2Int((int)gridPos.x, (int)gridPos.y))).ToArray()[0];
+            Debug.Log(firstUnit.Movement);
+            List<Hex> movementField = firstUnit.GetReachableHexes();
+            foreach (Hex movementHex in movementField)
+            {
+                Debug.Log(movementHex.Position);
+            }
+            _generator._world.HighlightHexes(movementField);
         }
     }
 }

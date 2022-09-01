@@ -32,5 +32,10 @@ namespace Assets.Scripts.Map
         {
             return _neighbours[dir];
         }
+
+        public Vector3 GetWorldPosition(Grid grid)
+        {
+            return grid.CellToWorld((Vector3Int)this.Position);
+        }
     }
 }

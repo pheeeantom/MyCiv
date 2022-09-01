@@ -15,5 +15,6 @@ namespace Assets.Scripts.Map
         public static Tile Snow = (Tile)AssetDatabase.LoadAssetAtPath("Assets/Tiles/snow.asset", typeof(Tile));
         public static Tile Tundra = (Tile)AssetDatabase.LoadAssetAtPath("Assets/Tiles/tundra.asset", typeof(Tile));
         public static Tile Fog = (Tile)AssetDatabase.LoadAssetAtPath("Assets/Tiles/fog.asset", typeof(Tile));
+        public static Tile Movement = (Tile)AssetDatabase.LoadAssetAtPath("Assets/Tiles/movement.asset", typeof(Tile));
     }
 }

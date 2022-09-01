@@ -219,9 +219,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4322f888c8bbae34eb4c1719017c7d5d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _generator: {fileID: 0}
-  _grid: {fileID: 0}
-  _camera: {fileID: 0}
+  _generator: {fileID: 1967348316}
+  _grid: {fileID: 1967348312}
+  _camera: {fileID: 1651424731}
 --- !u!1 &1832560498
 GameObject:
   m_ObjectHideFlags: 0
@@ -456,7 +456,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: bd62077fdbfcbf747a080f035bf00c9e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  grid: {fileID: 0}
   tilemap: {fileID: 1832560501}
   units: {fileID: 2053802429}
 --- !u!114 &1967348316

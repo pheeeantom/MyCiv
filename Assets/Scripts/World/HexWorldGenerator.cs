@@ -170,9 +170,7 @@ namespace Assets.Scripts.Map
 			GenerateBiomeMap();
 			UpdateBiomeBitmask();
 
-			Hex hex = new Hex(new Vector2Int(0, 5));
-			//Instantiate(new Pop(2, hex, this._world), );
-
+			Prefabs.Pop.Spawn(this._world, 0, 5);
 		}
 
 		protected override void FloodFill()

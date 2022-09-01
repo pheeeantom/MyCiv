@@ -23,7 +23,7 @@ namespace Assets.Scripts.Units
 
         void Start()
         {
-            this._world = GetComponentInParent<World>();
+            
         }
 
         public List<Hex> GetReachableHexes()
@@ -48,6 +48,17 @@ namespace Assets.Scripts.Units
         protected virtual int GetMovementPoints(HexType hexType)
         {
             return hexType.MovementPoints;
+        }
+
+        public Unit Spawn(World world, int x, int y)
+        {
+            this._world = world;
+            Unit prefabInstantiation = Instantiate(this, this._world.Grid.CellToWorld(new Vector3Int(x, y, 0)), Quaternion.identity);
+            //Debug.Log(this.transform + ", " + world.transform);
+            prefabInstantiation.transform.SetParent(world.transform);
+            this._hex = this._world.GetHex(new Vector2Int(x, y));
+            this._world.AddUnit(this._hex, this);
+            return prefabInstantiation;
         }
     }
 }

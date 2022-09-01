@@ -7,9 +7,11 @@ namespace Assets.Scripts.Map
 {
     class World : MonoBehaviour
     {
-        public Grid grid;
+        Grid _grid;
         [SerializeField] public Tilemap tilemap;
         [SerializeField] public Tilemap units;
+
+        public Grid Grid => _grid;
 
         protected int width = 512;
         protected int height = 512;
@@ -17,10 +19,11 @@ namespace Assets.Scripts.Map
         public Hex[,] hexes;
 
         Dictionary<Vector2Int, Hex> _hexPositionsDict = new Dictionary<Vector2Int, Hex>();
+        Dictionary<Hex, List<Unit>> _hexUnitsDict = new Dictionary<Hex, List<Unit>>();
 
         private void Start()
         {
-            grid = GetComponent<Grid>();
+            _grid = GetComponent<Grid>();
         }
 
         public void createHexesRect()
@@ -44,6 +47,7 @@ namespace Assets.Scripts.Map
             //if (_hexPositionsDict.ContainsKey(pos)) 
             //    _hexPositionsDict.Remove(pos);
             _hexPositionsDict.Add(pos, hex);
+            _hexUnitsDict.Add(hex, new List<Unit>());
 
             foreach (HexDirection dir in HexDirection.Directions)
             {
@@ -55,16 +59,26 @@ namespace Assets.Scripts.Map
             }
         }
 
+        public void AddUnit(Hex hex, Unit unit)
+        {
+            _hexUnitsDict[hex].Add(unit);
+        }
+
         public Hex GetHex(Vector2Int pos)
         {
             return _hexPositionsDict[pos];
+        }
+
+        public List<Unit> GetUnits(Hex hex)
+        {
+            return _hexUnitsDict[hex];
         }
 
         public void HighlightHexes(List<Hex> hexes)
         {
             foreach (Hex hex in hexes)
             {
-                this.units.SetColor((Vector3Int)hex.Position, new Color(0, 0, 0, 0.1f));
+                this.units.SetTile((Vector3Int)hex.Position, Tiles.Movement);
             }
         }
     }
