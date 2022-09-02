@@ -1,10 +1,7 @@
-using Assets.Scripts;
-using Assets.Scripts.Map;
-using Assets.Scripts.Units;
+using World;
 using System.Collections.Generic;
-using UnityEditor;
+using Units;
 using UnityEngine;
-
 public class CameraMouseController : MonoBehaviour
 {
     [SerializeField] HexWorldGenerator _generator;
@@ -12,6 +9,8 @@ public class CameraMouseController : MonoBehaviour
     [SerializeField] Camera _camera;
     float _maxX;
     float _maxY;
+    Unit _selectedUnit;
+    
     // Start is called before the first frame update
     void Start()
     {
@@ -35,16 +34,24 @@ public class CameraMouseController : MonoBehaviour
         {
             Vector3 mousePos = new Vector3(Input.mousePosition.x, Input.mousePosition.y, -_camera.transform.position.z);
             Vector3 worldPos = _camera.ScreenToWorldPoint(mousePos);
-            Vector3 gridPos = _grid.WorldToCell(worldPos);
-            Debug.Log("Grid: " + gridPos);
-            Unit firstUnit = _generator._world.GetUnits(_generator._world.GetHex(new Vector2Int((int)gridPos.x, (int)gridPos.y))).ToArray()[0];
-            Debug.Log(firstUnit.Movement);
-            List<Hex> movementField = firstUnit.GetReachableHexes();
-            foreach (Hex movementHex in movementField)
+            Vector2Int gridPos = (Vector2Int)_grid.WorldToCell(worldPos);
+            Hex hex = _generator._world.GetHex(gridPos);
+            
+            if (hex is null)
+                return;
+
+            Unit unit = hex.Unit;
+            if (!(unit is null))
             {
-                Debug.Log(movementHex.Position);
+                _selectedUnit = unit;
+                List<Hex> reachableHexes = _selectedUnit.GetReachableHexes();
+                _generator._world.HighlightHexes(reachableHexes);
             }
-            _generator._world.HighlightHexes(movementField);
+            else if (!(_selectedUnit is null))
+            {
+                List<Hex> path = _selectedUnit.FindShortestPath(hex);
+                _generator._world.HighlightHexes(path);
+            }
         }
     }
 }

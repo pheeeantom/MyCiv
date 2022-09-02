@@ -1,12 +1,9 @@
-﻿using Assets.Scripts.Map;
+﻿using World;
 
-namespace Assets.Scripts.Units
+namespace Units
 {
     class Pop : LandUnit
     {
-        /*public Pop(int movement, Hex hex, World world) : base(movement, hex, world)
-        {
-            
-        }*/
+        
     }
 }

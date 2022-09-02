@@ -1,9 +1,9 @@
 ﻿using UnityEngine;
 using AccidentalNoise;
 using System.Collections.Generic;
-using Assets.Scripts.Units;
+using Assets.Scripts;
 
-namespace Assets.Scripts.Map
+namespace World
 {
     class HexWorldGenerator : Generator
     {
@@ -97,19 +97,19 @@ namespace Assets.Scripts.Map
 
 		protected override Cell GetTop(Cell t)
 		{
-			return this._world.hexes[t.X, MathHelper.Mod(t.Y - 1, Height)];
+			return this._world.HexMatrix[t.X, MathHelper.Mod(t.Y - 1, Height)];
 		}
 		protected override Cell GetBottom(Cell t)
 		{
-			return this._world.hexes[t.X, MathHelper.Mod(t.Y + 1, Height)];
+			return this._world.HexMatrix[t.X, MathHelper.Mod(t.Y + 1, Height)];
 		}
 		protected override Cell GetLeft(Cell t)
 		{
-			return this._world.hexes[MathHelper.Mod(t.X - 1, Width), t.Y];
+			return this._world.HexMatrix[MathHelper.Mod(t.X - 1, Width), t.Y];
 		}
 		protected override Cell GetRight(Cell t)
 		{
-			return this._world.hexes[MathHelper.Mod(t.X + 1, Width), t.Y];
+			return this._world.HexMatrix[MathHelper.Mod(t.X + 1, Width), t.Y];
 		}
 
 		protected override void UpdateBiomeBitmask()
@@ -118,7 +118,7 @@ namespace Assets.Scripts.Map
 			{
 				for (var y = 0; y < Height; y++)
 				{
-					this._world.hexes[x, y].UpdateBiomeBitmask();
+					this._world.HexMatrix[x, y].UpdateBiomeBitmask();
 				}
 			}
 		}
@@ -141,9 +141,9 @@ namespace Assets.Scripts.Map
 				for (var y = 0; y < this.Height; y++)
 				{
 
-					if (!_world.hexes[x, y].Collidable) continue;
+					if (!_world.HexMatrix[x, y].Collidable) continue;
 
-					Hex t = _world.hexes[x, y];
+					Hex t = _world.HexMatrix[x, y];
 					t.BiomeType = GetBiomeType(t);
 				}
 			}
@@ -170,7 +170,7 @@ namespace Assets.Scripts.Map
 			GenerateBiomeMap();
 			UpdateBiomeBitmask();
 
-			Prefabs.Pop.Spawn(this._world, 0, 5);
+			Prefabs.Pop.Spawn(this._world, 33, 17);
 		}
 
 		protected override void FloodFill()
@@ -183,7 +183,7 @@ namespace Assets.Scripts.Map
 				for (int y = 0; y < Height; y++)
 				{
 
-					Hex t = this._world.hexes[x, y];
+					Hex t = this._world.HexMatrix[x, y];
 
 					//Cell already flood filled, skip
 					if (t.FloodFilled) continue;
@@ -259,14 +259,14 @@ namespace Assets.Scripts.Map
 			{
 				for (var y = 0; y < Height; y++)
 				{
-					this._world.hexes[x, y].UpdateBitmask();
+					this._world.HexMatrix[x, y].UpdateBitmask();
 				}
 			}
 		}
 
 		public override void LoadCells()
         {
-			for (var x = 0; x < Width; x++)
+	        for (var x = 0; x < Width; x++)
 			{
 				for (var y = 0; y < Height; y++)
 				{
@@ -390,12 +390,8 @@ namespace Assets.Scripts.Map
 						t.Cloud2Value = (t.Cloud2Value - Clouds2.Min) / (Clouds2.Max - Clouds2.Min);
 					}
 
-					//t.HexType = HexType.Ocean;
 					t.HexType = HexType.GetHexType(t.HeightType, t.MoistureType, t.HeatType);
-					//Debug.Log(t.HeightType);
 					_world.AddHex(t, x, y);
-					//Debug.Log(t.MoistureValue);
-					//Debug.Log(t.Position);
 				}
 			}
 		}

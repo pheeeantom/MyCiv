@@ -1,15 +1,12 @@
-﻿using Assets.Scripts.Map;
+﻿using World;
+using Units;
+using World;
 
-namespace Assets.Scripts.Units
+namespace Units
 {
     abstract class NavalUnit : Unit
     {
-        /*protected NavalUnit(int movement, Hex hex, World world) : base(movement, hex, world)
-        {
-            
-        }*/
-        
-        protected override int GetMovementPoints(HexType hexType)
+        public override int GetMovementPoints(HexType hexType)
         {
             return hexType == HexType.Ocean || hexType == HexType.CoastLake ? 1 : base.GetMovementPoints(hexType);
         }

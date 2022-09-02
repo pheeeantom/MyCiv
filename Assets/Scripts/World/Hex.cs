@@ -1,15 +1,18 @@
 ﻿using System.Collections.Generic;
+using Units;
 using UnityEngine;
 
-namespace Assets.Scripts.Map
+namespace World
 {
-    class Hex : Cell
+    public class Hex : Cell
     {
-        Dictionary<HexDirection, Hex> _neighbours = new Dictionary<HexDirection, Hex>();
-        
+        Dictionary<CardinalDirection, Hex> _neighbours = new Dictionary<CardinalDirection, Hex>();
+        Unit _unit;
+
         public HexType HexType { get; set; }
-        public Vector2Int Position => new Vector2Int(X, Y);
+        public HexPosition Position => new HexPosition(X, Y);
         public List<Hex> Neighbours => new List<Hex>(_neighbours.Values);
+        public Unit Unit => _unit;
 
         public Hex(Vector2Int pos)
         {
@@ -17,25 +20,30 @@ namespace Assets.Scripts.Map
             this.Y = pos.y;
         }
 
-        void Connect(Hex hex, HexDirection dir)
+        void Connect(Hex hex, CardinalDirection dir)
         {
             _neighbours.Add(dir, hex);
         }
 
-        public static void Connect(Hex hex, Hex hex1, HexDirection dir)
+        public static void Connect(Hex hex, Hex hex1, CardinalDirection dir)
         {
             hex.Connect(hex1, dir);
             hex1.Connect(hex, dir.Opposite());
         }
 
-        public Hex GetNeighbour(HexDirection dir)
+        public Hex GetNeighbour(CardinalDirection dir)
         {
             return _neighbours[dir];
         }
 
         public Vector3 GetWorldPosition(Grid grid)
         {
-            return grid.CellToWorld((Vector3Int)this.Position);
+            return grid.CellToWorld(this.Position);
+        }
+
+        public void AddUnit(Unit unit)
+        {
+            this._unit = unit;
         }
     }
 }

@@ -1,8 +1,9 @@
-﻿using UnityEngine.Tilemaps;
+﻿using World;
+using UnityEngine.Tilemaps;
 
-namespace Assets.Scripts.Map
+namespace World
 {
-    class HexType
+    public class HexType
     {
         public static HexType Ocean = new HexType("ocean", Tiles.Ocean, 1000);
         public static HexType Desert = new HexType("desert", Tiles.Desert, 2);

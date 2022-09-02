@@ -2,7 +2,7 @@
 using UnityEngine;
 using UnityEngine.Tilemaps;
 
-namespace Assets.Scripts.Map
+namespace World
 {
     class Tiles : MonoBehaviour
     {

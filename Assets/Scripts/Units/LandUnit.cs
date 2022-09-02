@@ -1,12 +1,10 @@
-﻿using Assets.Scripts.Map;
+﻿using World;
+using Units;
 
-namespace Assets.Scripts.Units
+namespace Units
 {
     abstract class LandUnit : Unit
     {
-        /*protected LandUnit(int movement, Hex hex, World world) : base(movement, hex, world)
-        {
-            
-        }*/
+        
     }
 }

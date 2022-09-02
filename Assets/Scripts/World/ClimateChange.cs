@@ -1,11 +1,6 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using UnityEngine;
+﻿using UnityEngine;
 
-namespace Assets.Scripts.Map
+namespace World
 {
     class ClimateChange : MonoBehaviour
     {
@@ -33,7 +28,7 @@ namespace Assets.Scripts.Map
 			{
 				for (int y = 0; y < this._generator.Height; y++)
 				{
-					Hex t = this._world.hexes[x, y];
+					Hex t = this._world.HexMatrix[x, y];
 					t.X = x;
 					t.Y = y;
 
@@ -113,7 +108,7 @@ namespace Assets.Scripts.Map
 					//Debug.Log(t.HeightType);
 
 					//_world.AddHex(t, x, y);
-					_world.tilemap.SetTile((Vector3Int)t.Position, t.HexType.Tile);
+					_world.landscape.SetTile((Vector3Int)t.Position, t.HexType.Tile);
 
 					//Debug.Log(t.MoistureValue);
 					//Debug.Log(t.Position);

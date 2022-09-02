@@ -234,7 +234,7 @@ GameObject:
   - component: {fileID: 1832560501}
   - component: {fileID: 1832560500}
   m_Layer: 0
-  m_Name: Map
+  m_Name: Landscape
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -456,8 +456,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: bd62077fdbfcbf747a080f035bf00c9e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  tilemap: {fileID: 1832560501}
-  units: {fileID: 2053802429}
+  landscape: {fileID: 1832560501}
+  highlights: {fileID: 2053802429}
 --- !u!114 &1967348316
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -513,7 +513,7 @@ GameObject:
   - component: {fileID: 2053802429}
   - component: {fileID: 2053802430}
   m_Layer: 0
-  m_Name: Units
+  m_Name: Highlights
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
